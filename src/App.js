@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import classnames from 'classnames';
 
 class App extends Component {
+  state = {
+    speed: 0
+  };
+
+  componentDidMount() {
+    const interval = setInterval(() => {
+      this.setState({ speed: this.state.speed + 1 });
+    }, 1000)
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className={classnames({
+          "ruletta": true,
+          "ruletta-fast": this.state.speed == 1,
+          "ruletta-2": this.state.speed == 2,
+          "ruletta-3": this.state.speed == 3,
+          "ruletta-4": this.state.speed == 4,
+          "ruletta-5": this.state.speed == 5,
+        })}></div>
       </div>
     );
   }
