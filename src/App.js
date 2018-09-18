@@ -10,7 +10,7 @@ class App extends Component {
   componentDidMount() {
     const interval = setInterval(() => {
       this.setState({ speed: this.state.speed + 1 });
-    }, 1000)
+    }, 3000)
   }
 
   render() {
