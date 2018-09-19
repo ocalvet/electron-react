@@ -13,17 +13,18 @@ class App extends Component {
     }, 3000)
   }
 
+  draw = () => {
+    console.log('canvas', this.canvas);
+    const ctx = this.canvas.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(0, 0, 150, 75);
+  }
+
   render() {
     return (
       <div className="App">
-        <div className={classnames({
-          "ruletta": true,
-          "ruletta-fast": this.state.speed == 1,
-          "ruletta-2": this.state.speed == 2,
-          "ruletta-3": this.state.speed == 3,
-          "ruletta-4": this.state.speed == 4,
-          "ruletta-5": this.state.speed == 5,
-        })}></div>
+        <button onClick={this.draw}>Draw</button>
+        <canvas ref={this.canvas} width="500" height="500" />
       </div>
     );
   }
