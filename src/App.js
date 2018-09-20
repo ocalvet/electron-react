@@ -4,27 +4,36 @@ import classnames from 'classnames';
 
 class App extends Component {
   state = {
-    speed: 0
+    angle: 0,
+    draw: false,
+    rotationInterval: undefined
   };
 
   componentDidMount() {
-    const interval = setInterval(() => {
-      this.setState({ speed: this.state.speed + 1 });
-    }, 3000)
+    this.draw();
   }
 
-  draw = () => {
-    console.log('canvas', this.canvas);
-    const ctx = this.canvas.getContext("2d");
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0, 0, 150, 75);
+  draw() {
+    requestAnimationFrame(this.reDraw);
+  }
+
+  reDraw = (timestamp) => {
+    this.setState({ angle: (this.state.angle > 360) ? 1 : this.state.angle + 1 });
+    if (this.state.draw) {
+      requestAnimationFrame(this.reDraw);
+    }
+  }
+
+  start = () => {
+    this.setState({ draw: true });
+    this.draw();
   }
 
   render() {
     return (
       <div className="App">
-        <button onClick={this.draw}>Draw</button>
-        <canvas ref={this.canvas} width="500" height="500" />
+        <button onClick={this.start}>Spin</button>
+        <div style={{ backgroundColor: 'red', height: 100, width: 100, transform: `rotate(${this.state.angle}deg)` }}></div>
       </div>
     );
   }
