@@ -5,7 +5,7 @@ import classnames from 'classnames';
 class App extends Component {
   state = {
     angle: 0,
-    draw: false,
+    spin: false,
     rotationInterval: undefined
   };
 
@@ -19,20 +19,22 @@ class App extends Component {
 
   reDraw = (timestamp) => {
     this.setState({ angle: (this.state.angle > 360) ? 1 : this.state.angle + 1 });
-    if (this.state.draw) {
+    if (this.state.spin) {
       requestAnimationFrame(this.reDraw);
     }
   }
 
-  start = () => {
-    this.setState({ draw: true });
+  spin = () => {
+    this.setState({ spin: !this.state.spin });
     this.draw();
   }
 
   render() {
     return (
       <div className="App">
-        <button onClick={this.start}>Spin</button>
+        <div>
+          <button onClick={this.spin}>Spin</button>
+        </div>
         <div style={{ backgroundColor: 'red', height: 100, width: 100, transform: `rotate(${this.state.angle}deg)` }}></div>
       </div>
     );
