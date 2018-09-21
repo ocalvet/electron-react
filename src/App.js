@@ -50,7 +50,7 @@ class App extends Component {
           </div>
         </div>
         <div style={{ display: 'flex', marginTop: 25 }}>
-          <div style={{ backgroundColor: 'red', height: 100, width: 100, transform: `rotate(${this.state.angle}deg)` }}></div>
+          <div style={{  backgroundImage: 'url(images/arrow.png)', backgroundSize: 'cover', height: 100, width: 100, transform: `rotate(${this.state.angle}deg)` }}></div>
         </div>
       </div>
     );
