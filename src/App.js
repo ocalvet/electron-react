@@ -8,6 +8,10 @@ class App extends Component {
     rotationInterval: undefined
   };
 
+  getTime() {
+    return Math.floor((Math.random() * 5000) + 1);
+  }
+
   componentDidMount() {
     this.draw();
   }
@@ -24,7 +28,12 @@ class App extends Component {
   }
 
   spin = () => {
-    this.setState({ spin: !this.state.spin });
+    this.setState({ spin: true });
+    const totalTime = this.getTime();
+    console.log('Spin', totalTime);
+    setTimeout(() => {
+      this.setState({ spin: false });
+    }, totalTime);
     this.draw();
   }
 
