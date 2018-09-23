@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     angle: 0,
-    speed: 1,
+    speed: 7,
     spin: false,
     rotationInterval: undefined
   };
 
   getTime() {
-    return Math.floor((Math.random() * 5000) + 1);
+    return Math.floor((Math.random() * 8000) + 2000);
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class App extends Component {
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
         <div>
           <div style={{ display: 'flex', flexDirection: 'row', justifyContent:'space-between', width: 200, marginBottom: 10 }}>
-            <button onClick={this.spin}>{this.state.spin ? 'Stop' : 'Spin'}</button>
+            <button disabled={this.state.spin} onClick={this.spin}>Spin</button>
             <button onClick={this.speedUp}>Speed Up</button>
             <button onClick={this.slowDown}>Slow Down</button>
           </div>
