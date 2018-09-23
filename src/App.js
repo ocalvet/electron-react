@@ -8,12 +8,11 @@ class App extends Component {
     rotationInterval: undefined
   };
 
-  getTime() {
-    return Math.floor((Math.random() * 8000) + 2000);
+  getTime(min, max) {
+    return Math.floor((Math.random() * (max - min)) + min);
   }
 
   componentDidMount() {
-    this.draw();
   }
 
   draw() {
@@ -29,7 +28,7 @@ class App extends Component {
 
   spin = () => {
     this.setState({ spin: true });
-    const totalTime = this.getTime();
+    const totalTime = this.getTime(2000, 8000);
     console.log('Spin', totalTime);
     setTimeout(() => {
       this.setState({ spin: false });
